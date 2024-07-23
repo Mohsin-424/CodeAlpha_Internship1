@@ -35,8 +35,14 @@ while True:
     low = np.array([0,42,0])
     high = np.array([179,255,255])
     # Creating a mask 
-    mask = cv2.inRange( hsv_frame , low , high )
-    result = cv2.bitwise_and( frame , frame , mask = mask )
+    black_mask = cv2.inRange( hsv_frame , low , high )
+    
+    
+    
+    
+    # Combing the Mask
+    combined_mask = red_mask | blue_mask | green_mask | black_mask
+    result = cv2.bitwise_and( frame , frame , mask = combined_mask )
     
     
     
